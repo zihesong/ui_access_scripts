@@ -70,10 +70,26 @@ def find_leaf(obj, target_key, path=[], leaf_nodes=[]):
 # 3 Uses the find specific leaf node function to write leaf nodes to txt file. 
 # 4 Needs to iterate
 '''
-screen150 = [150, {"description": "screen for shopping cart"}, {"resource-id": "xxx", "class": "TextView", "content-desc": "..."},{"resource-id": "xxx", "class": "TextView", "content-desc": "..."} ]
-screen150[0] = 150
-screen150[1] = SCREEN_DESCRIPTION
-screen150[2:] = leaf_nodes
+Input for Parser: 
+    screenDescription with id=ID, 
+    Json file with id=ID
+
+    For screenDescription, you can store the whole csv file into a dictionary like this:
+        {"150": "screen for shopping cart", 
+        "180": "screen for settings", 
+        ...}
+
+Output for Parser: 
+    List screen_ID = [ID, 
+                    "Description_For_Screen", 
+                    {"resource-id": "xxx", "class": "TextView", "content-desc": "...", ...}, 
+                    {"resource-id": "xxx", "class": "TextView", "content-desc": "...", ...}, 
+                    ...
+                    ]
+    screen150[0] = 150
+    screen150[1] = SCREEN_DESCRIPTION
+    screen150[2:] = leaf_nodes
+
 '''
 
 jfilename = parse_json_files()
