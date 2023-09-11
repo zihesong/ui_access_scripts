@@ -69,10 +69,12 @@ def find_leaf(obj, target_key, path=[], leaf_nodes=[]):
 # 2 Stores the file from parsed JSON folder for JSON files returns file match to json_file
 # 3 Uses the find specific leaf node function to write leaf nodes to txt file. 
 # 4 Needs to iterate
+'''
 screen150 = [150, {"description": "screen for shopping cart"}, {"resource-id": "xxx", "class": "TextView", "content-desc": "..."},{"resource-id": "xxx", "class": "TextView", "content-desc": "..."} ]
 screen150[0] = 150
 screen150[1] = SCREEN_DESCRIPTION
 screen150[2:] = leaf_nodes
+'''
 
 jfilename = parse_json_files()
 
