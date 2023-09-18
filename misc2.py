@@ -3,7 +3,7 @@ import os
 import csv
 
 
-csv_file = 'screen_summaries.csv'  # Replace with the path to your CSV file
+csv_file = 'screen_desc.csv'  # Replace with the path to your CSV file
 csv_data = []
 
 with open(csv_file, 'r', newline='') as file:
@@ -16,7 +16,8 @@ with open(csv_file, 'r', newline='') as file:
 
 
 json_directory = r"C:\Users\carol\rico\combined" # Replace with the path to your JSON file path 
-
+#if running on MacOS, add your path the following way
+#json_directory = os.path.join(os.path.expanduser("~"), "Downloads", "combined")
 
 def extract_leaf_nodes(data, current_key=""):
     leaf_nodes = []
@@ -35,29 +36,27 @@ def extract_leaf_nodes(data, current_key=""):
     
     return leaf_nodes
 
-
-for screen_id, summary in csv_data:
-    json_filename = f"{screen_id}.json"  
-    json_path = os.path.join(json_directory, json_filename)
+#Set up the output file
+with open("ui_access_scripts_output_file.txt", "w") as output_file:
+    for screen_id, summary in csv_data:
+        json_filename = f"{screen_id}.json"  
+        json_path = os.path.join(json_directory, json_filename)
     
-    if os.path.exists(json_path):
-        with open(json_path, 'r') as json_file:
-            json_data = json.load(json_file)
+        print(json_path)
+        if os.path.exists(json_path):
+            with open(json_path, 'r') as json_file:
+                json_data = json.load(json_file)
         
-        # Extract leaf nodes from the JSON data
-        leaf_nodes = extract_leaf_nodes(json_data)
+            # Extract leaf nodes from the JSON data
+            leaf_nodes = extract_leaf_nodes(json_data)
         
-        # Write the information to a text file
-        output_filename = f"{screen_id}_output.txt"
-        output_path = os.path.join(json_directory, output_filename)
-        
-        with open(output_path, 'w', encoding="utf-8") as output_file:
+            #Write to the output file
             output_file.write(f"screenID: {screen_id}, summary: {summary}, Leaf nodes: ")
             for key, value in leaf_nodes:
                 output_file.write(f"{key}: {value}, ")
             output_file.write("\n")
     
-    else:
-        print(f"JSON file for screen ID {screen_id} not found.")
+        else:
+            print(f"JSON file for screen ID {screen_id} not found.")
 
 print("Processing completed.")
