@@ -12,8 +12,8 @@ def read_csv(csv_file, sid = "screenId", summary = "summary"):
         for row in reader:
             if line_no%5 == 1:
                 screen_id = int(row[sid])
-                summary = row[summary]
-                csv_data.append({"id": screen_id, "summary": summary})
+                description = row[summary]
+                csv_data.append({"id": screen_id, "summary": description})
             line_no += 1
     return csv_data
 
@@ -54,5 +54,5 @@ if __name__ == "__main__":
     csv_file = './screen_summaries.csv' 
     save_file = './screen_desc.csv' 
     csv_data = read_csv(csv_file)
-    save_csv_data(csv_data, save_file)
+    # save_csv_data(csv_data, save_file)
     save_rico_screen(csv_data)
