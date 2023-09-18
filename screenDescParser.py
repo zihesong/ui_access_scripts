@@ -54,5 +54,5 @@ if __name__ == "__main__":
     csv_file = './screen_summaries.csv' 
     save_file = './screen_desc.csv' 
     csv_data = read_csv(csv_file)
-    # save_csv_data(csv_data, save_file)
+    save_csv_data(csv_data, save_file)
     save_rico_screen(csv_data)
